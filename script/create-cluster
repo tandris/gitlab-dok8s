@@ -10,11 +10,16 @@ fi
 set -euo pipefail
 
 NAME="${1}"
-REGION="${REGION:-sfo2}"
-NODE_SIZE="${NODE_SIZE:-s-1vcpu-2gb}"
-NODE_COUNT="${NODE_COUNT:-2}"
-DEFAULT_VERSION="$(doctl k8s options versions -ojson | jq --raw-output 'first(.[] | select(.slug | test("^1.17.[0-9]+-do.[0-9]+$")) | .slug)')"
-VERSION="${CLUSTER_VERSION:-${DEFAULT_VERSION}}"
+# REGION="${REGION:-sfo2}"
+# NODE_SIZE="${NODE_SIZE:-s-1vcpu-2gb}"
+# NODE_COUNT="${NODE_COUNT:-2}"
+# DEFAULT_VERSION="$(doctl k8s options versions -ojson | jq --raw-output 'first(.[] | select(.slug | test("^1.17.[0-9]+-do.[0-9]+$")) | .slug)')"
+# VERSION="${CLUSTER_VERSION:-${DEFAULT_VERSION}}"
+
+read -p "Region (nyc1|ams3|sfo2|sgp1|lon1|fra1|tor1|blr1): " REGION
+read -p "Node size (s-1vcpu-2gb:3|s-2vcpu-2gb:3|s-2vcpu-4gb:3|s-4vcpu-8gb:3|s-8vcpu-16gb:3): " NODE_SIZE
+read -p "Node count (number): " NODE_COUNT
+read -p "K8s version (1.18.10-do.2|1.19.3-do.2): " VERSION
 
 # Retries a command on failure.
 # $1 - the max number of attempts
