@@ -10,10 +10,6 @@ mkdir -p tmp
 
 # Grab the cluster name with a default of "hpa-demo".
 read -p "Cluster name: " CLUSTER_NAME
-read -p "Region (nyc1|ams3|sfo2|sgp1|lon1|fra1|tor1|blr1): " REGION
-read -p "Node size (s-1vcpu-2gb:3|s-2vcpu-2gb:3|s-2vcpu-4gb:3|s-4vcpu-8gb:3|s-8vcpu-16gb:3): " NODE_SIZE
-read -p "Node count (number): " NODE_COUNT
-read -p "K8s version (1.18.10-do.2|1.19.3-do.2): " VERSION
 
 # Create the cluster or use the existing.
 script/create-cluster ${CLUSTER_NAME}
